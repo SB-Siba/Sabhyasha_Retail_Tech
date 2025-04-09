@@ -1,0 +1,52 @@
+
+{% block content %}
+<div class="container">
+    <h2>Home Page</h2>
+
+    <!-- Department Form -->
+    <h3>Add Department</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ department_form.as_p }}
+        <button type="submit" name="add_department" class="btn btn-primary">Add Department</button>
+    </form>
+
+    <!-- Position Form -->
+    <h3>Add Position</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ position_form.as_p }}
+        <button type="submit" name="add_position" class="btn btn-primary">Add Position</button>
+    </form>
+
+    <!-- Employee Form -->
+    <h3>Add Employee</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ employee_form.as_p }}
+        <button type="submit" name="add_employee" class="btn btn-primary">Add Employee</button>
+    </form>
+
+    <!-- Display Data -->
+    <h3>Departments</h3>
+    <ul>
+        {% for department in departments %}
+            <li>{{ department.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Positions</h3>
+    <ul>
+        {% for position in positions %}
+            <li>{{ position.title }} ({{ position.department.name }})</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Employees</h3>
+    <ul>
+        {% for employee in employees %}
+            <li>{{ employee.name }} - {{ employee.position.title }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
